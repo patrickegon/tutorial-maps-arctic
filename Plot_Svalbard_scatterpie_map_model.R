@@ -1,163 +1,98 @@
-#~/Documents/Documentos/THESIS/Code_2021/R/Plot_Svalbard/Plot_Svalbard_scatterpie_map_model.R
-
+# Scatterpie Plots for Introduction
+```R
+# Load necessary libraries
 library(PlotSvalbard)
 library(ggplot2)
 library(scatterpie)
 
-# Plots Introdução.
+## LVL_2
 
-# LVL_2
+### Map 1: Svalbard + Currents + Depth
 
-# Mapa 1: Svalbard+correntes+depth
-
+```R
+# Display a basemap of the Barents Sea with bathymetry, currents, and specified style.
+# Correct script above if needed.
 basemap("barentssea", bathymetry = TRUE, bathy.style = "poly_greys", currents = TRUE, current.alpha = 0.7)
-
-# Corrigir script acima.
-
-######################################################################################
-######################################################################################
-
-# Mapa 2:
-
-# Longitude + Latitude + nomes_dos_grupos_tax_>1% + Other + Total + lon.utm + lat.utm
-# 18.00000 + 42.00000 + 12.48876... + 30.32762 + 100 + valr + valor
-# Scatterpie + mapa de Svalbard e a distribuição dos grupos de acordo com o local de coleta.
-
-############################### 16S rRNA ############################################
-
-# Inner zone
-
-# load data
+# Display a scatterpie plot on a Svalbard map showing the distribution of groups based on collection location.
+# Coordinates include Longitude, Latitude, group names, Other, Total, UTM longitude, and UTM latitude.
+# Font style for species names is set to italic.
+```R
+# Load data for the inner zone
 getwd()
-setwd("~/Documents/Documentos/THESIS/Code_2021/R/Plot_Svalbard/Scatterpie_plot_R/16S_rRNA_lvl-6/")
-
-# read data_table 
+setwd("~/Documents/lvl-6/")
 scatterpie_16S_inner_z <- read.csv("scatterpie_16S_inner_z.csv")
-
 x <- transform_coord(scatterpie_16S_inner_z, lon = "Longitude", lat = "Latitude", bind = TRUE)
+species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID", "Longitude", "Latitude", "Total")]
 
-species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID",
-                                           "Longitude", "Latitude", "Total")]
-
+# Display scatterpie plot on the Kongsfjorden map for the inner zone
 basemap("kongsfjorden", limits = c(11.9,12.6,78.8,79.1), round.lon = 2, round.lat = 1) +
   geom_scatterpie(aes(x = lon.utm, y = lat.utm, group = ID, r = 12*Total),
                   data = x, cols = species, size = 0.1) + scale_fill_discrete(name = "Species",
                                                                               breaks = species, labels = parse(text = paste0("italic(" , sub("*\\.", "~", species), ")")))
 
-#######################################################################################
-#######################################################################################
+### Map 3: Outer zone
 
-# Outer zone
-
-# load data
+```R
+# Load data for the outer zone
 getwd()
-setwd("~/Documents/Documentos/THESIS/Code_2021/R/Plot_Svalbard/Scatterpie_plot_R/16S_rRNA_lvl-6/")
-
-# read data_table 
+setwd("~/Documents/lvl-6/")
 scatterpie_16S_outer_z <- read.csv("scatterpie_16S_outer_z.csv")
-
 x <- transform_coord(scatterpie_16S_outer_z, lon = "Longitude", lat = "Latitude", bind = TRUE)
+species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID", "Longitude", "Latitude", "Total")]
 
-species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID",
-                                           "Longitude", "Latitude", "Total")]
+# Display scatterpie plot on the Barents Sea map for the outer zone
 basemap("barentssea", limits = c(3.8,13,78.8,79.2), round.lon = 2, round.lat = 1) +
   geom_scatterpie(aes(x = lon.utm, y = lat.utm, group = ID, r = 130*Total),
                   data = x, cols = species, size = 0.1) + scale_fill_discrete(name = "Species",
                                                                               breaks = species, labels = parse(text = paste0("italic(" , sub("*\\.", "~", species), ")")))
 
-#######################################################################################
-#######################################################################################
+### Inner zone
 
-############################### 18S rRNA  ############################################
-
-# Inner zone
-
-# load data
+# Load data for the inner zone
 getwd()
-setwd("~/Documents/Documentos/THESIS/Code_2021/R/Plot_Svalbard/Scatterpie_plot_R/18S_rRNA_lvl-6/")
-
-# read data_table 
+setwd("~/Documents/lvl-6/")
 scatterpie_18S_inner_z <- read.csv("scatterpie_18S_inner_z.csv")
-
 x <- transform_coord(scatterpie_18S_inner_z, lon = "Longitude", lat = "Latitude", bind = TRUE)
+species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID", "Longitude", "Latitude", "Total")]
 
-species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID",
-                                           "Longitude", "Latitude", "Total")]
-
+# Display scatterpie plot on the Kongsfjorden map for the inner zone
 basemap("kongsfjorden", limits = c(11.9,12.6,78.8,79.1), round.lon = 2, round.lat = 1) +
   geom_scatterpie(aes(x = lon.utm, y = lat.utm, group = ID, r = 12*Total),
                   data = x, cols = species, size = 0.1) + scale_fill_discrete(name = "Species",
                                                                               breaks = species, labels = parse(text = paste0("italic(" , sub("*\\.", "~", species), ")")))
 
-#######################################################################################
-#######################################################################################
+### Outer zone
 
-# Outer zone
-
-# load data
+```R
+# Load data for the outer zone
 getwd()
-setwd("~/Documents/Documentos/THESIS/Code_2021/R/Plot_Svalbard/Scatterpie_plot_R/18S")
-
-# read data_table 
+setwd("~/Documents/18S")
 scatterpie_18S_outer_z <- read.csv("scatterpie_18S_outer_z.csv")
-
 x <- transform_coord(scatterpie_18S_outer_z, lon = "Longitude", lat = "Latitude", bind = TRUE)
+species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID", "Longitude", "Latitude", "Total")]
 
-species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID",
-                                           "Longitude", "Latitude", "Total")]
+# Display scatterpie plot on the Barents Sea map for the outer zone
 basemap("barentssea", limits = c(3.8,13,78.8,79.2), round.lon = 2, round.lat = 1) +
   geom_scatterpie(aes(x = lon.utm, y = lat.utm, group = ID, r = 100*Total),
                   data = x, cols = species, size = 0.1) + scale_fill_discrete(name = "Species",
                                                                               breaks = species, labels = parse(text = paste0("italic(" , sub("*\\.", "~", species), ")")))
 
-#######################################################################################
-#######################################################################################
+### Complementary/Auxiliary Maps for Scatterpie Figures
 
-
-#######################################################################################
-
-#         MAPAS COMPLEMENTARES/APOIO para as figuras do scatterpie.
-
-# Area interna - Kongsfjorden 
-
+```R
+# Display a basemap of the Kongsfjorden inner area with bathymetry and scaled currents.
 basemap("kongsfjorden", limits = c(11.9,12.6,78.8,79.1), bathymetry = TRUE, currents = T, current.size = "scaled")
-
-# Area externa - Kongsfjorden and Fram Strait
-
+# Display a basemap of the Kongsfjorden and Fram Strait outer area with bathymetry and scaled currents.
 basemap("barentssea", bathymetry = TRUE, currents = TRUE, limits = c(3.8,13,78.8,79.2), current.size = "scaled")
 
+# Example Scatterpie Plot
 
-
-
-
-
-
-
-
-#######################################################################################
-#######################################################################################
-
-# Example
-# load data
+# Load data
 getwd()
 setwd("~/Documents/Documentos")
-
-# read data_table 
 sctp_kongsfjorden_03 <- read.csv("sctp_kongsfjorden_03.csv")
-
 x <- transform_coord(sctp_kongsfjorden_03, lon = "Longitude", lat = "Latitude", bind = TRUE)
+species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID", "Longitude", "Latitude", "Total")]
 
-species <- colnames(x)[!colnames(x) %in% c("lon.utm", "lat.utm", "ID",
-                                           "Longitude", "Latitude", "Total")]
-basemap("barentssea", limits = c(3.8,13,78.8,79.2), round.lon = 2, round.lat = 1) +
-  geom_scatterpie(aes(x = lon.utm, y = lat.utm, group = ID, r = 100*Total),
-                  data = x, cols = species, size = 0.1) + scale_fill_discrete(name = "Species",
-                                                                              breaks = species, labels = parse(text = paste0("italic(" , sub("*\\.", "~", species), ")")))
-
-basemap("kongsfjorden", limits = c(10,13,78.8,79.2), round.lon = 2, round.lat = 1) +
-  geom_scatterpie(aes(x = lon.utm, y = lat.utm, group = ID, r = 100*Total),
-                  data = x, cols = species, size = 0.1) + scale_fill_discrete(name = "Species",
-                                                                              breaks = species, labels = parse(text = paste0("italic(" , sub("*\\.", "~", species), ")")))
-# Olhar no template do endereço: 
-# local: /home/egon/Documents/Documentos/sctp_kongsfjorden_03.csv
-# local do codigo: /home/egon/Documents/Documentos/THESIS/Code_2021/R/Plot_Svalbard
+# Display scatterpie plot on the Barents Sea map for an example dataset
+basemap("barentssea",
