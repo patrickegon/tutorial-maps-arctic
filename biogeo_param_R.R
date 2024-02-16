@@ -7,7 +7,7 @@ library(ggplot2)
 # Set(WD)
 # read.csv (nitrite):
 getwd()
-setwd("~/Documents/Documentos/THESIS/results_biogeochemicals/10m/")
+setwd("~/Documents/results_biogeochemicals/10m/")
 nitrite <- read.csv("nitrite.csv")
 # plot nitritt profile:
 a <- interpolate_spatial(nitrite, Subset = "From <= 10", value = "nitrite") ## Interpolate
@@ -57,7 +57,7 @@ plot(g,  legend.label = "Urea [µmol/L]") + geom_text(data = Urea, aes(x = lon.u
 
 # setwd:
 getwd()
-setwd("~/Documentos/THESIS/results_biogeochemicals/20m")
+setwd("~/Documentos/biogeochemicals/20m")
 
 # nitrite profile:
 # read.csv nitritt
@@ -110,7 +110,7 @@ plot(n, legend.label = "Urea [µmol/L]") + geom_text(data = Urea, aes(x = lon.ut
 #####   TSM, Chl a and fluorescence
 # setwd:
 getwd()
-setwd("~/Documents/Documentos/THESIS/results_biogeochemicals/chla_tsm_phaeo_10m/")
+setwd("~/Documents/chla_tsm_phaeo_10m/")
 
 # read.csv chla
 chla <- read.csv("chla.csv")
@@ -138,8 +138,8 @@ plot(z, legend.label = "TSM") + geom_text(data = TSM, aes(x = lon.utm, y = lat.u
 
 # SETWD
 getwd()
-setwd("~/Documentos/THESIS/results_biogeochemicals/chla_tsm_phaeo_20m")
-setwd("~/Documents/Documentos/THESIS/results_biogeochemicals/chla_tsm_phaeo_10m/")
+setwd("~/Documentos/chla_tsm_phaeo_20m")
+setwd("~/Documents/chla_tsm_phaeo_10m/")
 
 # read.csv chla
 chla <- read.csv("chla.csv")
@@ -167,7 +167,7 @@ plot(z, legend.label = "TSM") + geom_text(data = TSM, aes(x = lon.utm, y = lat.u
 # setwd
 
 getwd()
-setwd("~/Documents/Documentos/THESIS/Sheets_thesis_2021/distance2land/")
+setwd("~/Documents/distance2land/")
 
 d2l <- read.csv("d2l_2.csv")
 
@@ -199,31 +199,3 @@ ggplot(dists, aes(x = Area, y = dist, label = Station, color = Area)) +
 ############################################################################################
 ############################################################################################
 ############################################################################################
-
-df <- data.frame(Station = c("KpS6_5M", "KpS5_10M",	"KpS4_10M",	"KpS2_10M",	
-                             "KpM5_10M",	"KpM5_50M",	"KpM4_10M",	"KpM2_10M",
-                             "KpN4_10M",	"KpN2_10M",	"Kc7_10M",	"Kc6_10M",
-                             "Kc5_10M", "CpN5_5M",	"Cc5_10M",	"Cc4_10M",
-                             "KB6_0M",	"KB3_1M", "KB0_10M")
-                 , Chla = c(0.643719311142471, 0.177496133587078, 1.08601338031798, 
-                            0.748113333415167, 0.575087472822134, 0.49600308441278, 
-                            1.05511590521208, 0.786899525569381, 0.448342085579213, 
-                            0, 0, 0, 0.188343119528511, 0.614531058063707, 0, 
-                            0.508822249616291, 2.06092732887219, 0, 2.61313752225421)
-                 , From = c(5, 10, 10, 10, 10, 50, 10, 10, 10, 10, 10, 10, 10, 5, 10,
-                            10, 0, 1, 10)
-                 , lon.ut(448155., 447293.2, 446527.4, 445411.1, 447339.6, 447339.6, 446817.5, 445607.7, 
-                          446941.1, 445508.1, 446297.1, 445842.4, 445372.5, 447296.1, 445588.7, 445631.6, 
-                          443905.6, 434862.1, 418212.2)
-                 , lat.utm(8755498, 8756067, 8756639, 8757636, 8756977, 8756977, 8757464, 8758296, 8758688, 
-                           8759327, 8760926, 8760449, 8759999, 8770421, 8769848, 8769469, 8763527, 8766572, 
-                           8777927)
-                 , lon = c(12.4640666666667, 12.5178333333333, 12.55445, 12.5954760052263, 
-                          12.4718666666667, 12.5296666666667, 12.5548333333333, 12.5548333333333,
-                          12.4651666666667, 12.533, 12.4575066666667, 12.4784433333333, 12.49864, 
-                          12.5268360134214, 12.4503133333333, 12.4475266666667, 12.3819666666667, 
-                          11.9532, 11.14141)
-                , lat = c(78.8788333333333, 78.8703333333333, 78.8655, 78.8607319816946, 78.8848166666667,
-                          78.8778333333333, 78.8736666666667, 78.8736666666667, 78.894, 78.8888333333333, 
-                          78.8999633333333, 78.9041783333333, 78.90862, 78.9938119612634, 78.9848383333333,
-                          78.9882116666667, 78.9309666666667, 78.9542833333333, 79.0470216666667))
