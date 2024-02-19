@@ -29,7 +29,7 @@ kbl(dt) %>%
 # Metadata Table:
 
 getwd()
-setwd("~/Documents/Documentos/THESIS/Sheets_thesis_2021/Metadados/")
+setwd("~/Documents")
 
 test <- read_csv("test.csv")
 
@@ -42,7 +42,7 @@ kbl(test) %>%
   add_header_above(c(" " = 1, "Group 1" = 2, "Group 2" = 2, "Group 3" = 2))
 
 getwd()
-setwd("~/Documents/Documentos/THESIS/Sheets_thesis_2021/Metadados/teste_knitr_kable/")
+setwd("~/Documents")
 
 test_2 <- read_csv("test_2.csv")
 
